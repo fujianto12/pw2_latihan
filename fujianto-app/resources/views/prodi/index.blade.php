@@ -16,8 +16,8 @@
                             <thead>
                                 <tr>
                                     <b>
-                                    <th style="color: purple">Nama Prodi</th>
-                                    <th style="color: purple">Nama Fakultas</th>
+                                        <th style="color: purple">Nama Prodi</th>
+                                        <th style="color: purple">Nama Fakultas</th>
                                     </b>
                                 </tr>
                                 @foreach ($prodis as $item)
@@ -30,10 +30,12 @@
                                         <form action="{{ route('prodi.destroy', $item->id) }}" method="POST">
                                             @method('delete')
                                             @csrf
-                                            <button type="submit"
-                                            class="btn btn-danger btn-rounded show_confirm"
-                                            data-toggle="tooltip" title='Delete'
-                                            data-nama='{{ $item->nama }}'>Hapus</button>                                        </form>
+                                            <a href="{{ route('prodi.edit', $item->id) }}"
+                                                class="btn btn-primary btn-sm">Edit</a>
+                                            <button type="submit" class="btn btn-danger btn-rounded show_confirm"
+                                                data-toggle="tooltip" title='Delete'
+                                                data-nama='{{ $item->nama }}'>Hapus</button>
+                                        </form>
                                     </td>
                                 </tr>
                             </tbody>
@@ -45,4 +47,3 @@
         </div>
     </div>
 @endsection
-

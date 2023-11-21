@@ -35,6 +35,7 @@ class ProdiController extends Controller
          //validasi data input
          $validasi = $request->validate([
             "nama" => "required|unique:prodis",
+            "falkutas_id" => "required",
         ]);
 
         //simpan data ke tabel falkutas
@@ -57,7 +58,10 @@ class ProdiController extends Controller
      */
     public function edit(Prodi $prodi)
     {
-        //
+        $falkutas = Falkutas::all();
+        return view('prodi.edit')->with('prodi', $prodi)->with('falkutas', $falkutas);
+
+
     }
 
     /**
@@ -65,8 +69,15 @@ class ProdiController extends Controller
      */
     public function update(Request $request, Prodi $prodi)
     {
-        //
-    }
+        $validasi = $request->validate([
+            "nama" => "required",
+            "falkutas_id" => "required"
+    ]);
+    $prodi->update($validasi);
+    // atau pakai cara di bawahini
+    // Prodi::where('id', $prodi->id)->update($validasi);
+    return redirect("prodi")-> with("success", "Data prodi berhasil diubah");
+}
 
     /**
      * Remove the specified resource from storage.
@@ -74,9 +85,9 @@ class ProdiController extends Controller
     public function destroy($id)
     {
         $prodi = Prodi::find($id);
-        // dd($falkutas);
+        // dd($prodi);
         $prodi -> delete();
-        return redirect("prodi")->with("success", "Data Falkutas berhasil dihapus");
+        return redirect("prodi")->with("success", "Data prodi berhasil dihapus");
 
 
     }
