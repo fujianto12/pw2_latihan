@@ -57,24 +57,35 @@ class FalkutasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Falkutas $falkutas)
+    public function edit($id)
     {
-        //
+        $falkutas = Falkutas::find($id);
+        return view('falkutas.edit')->with('falkutas', $falkutas);
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Falkutas $falkutas)
+    public function update(Request $request, $id)
     {
-        //
-    }
+        $validasi = $request->validate([
+            "nama" => "required"
+    ]);
+    Falkutas::find($id)->update($validasi);
+    return redirect("falkutas")->with("success", "Data Falkutas berhasil diubah");
+
+}
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Falkutas $falkutas)
+    public function destroy($id)
     {
-        //
+        $falkutas = Falkutas::find($id);
+        // dd($falkutas);
+        $falkutas -> delete();
+        return redirect("falkutas")->with("success", "Data Falkutas berhasil dihapus");
+
     }
 }

@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'Falkutas')
+@section('title', 'Prodi')
 
 @section('content')
     <div class="row">
@@ -26,6 +26,15 @@
                                 <tr>
                                     <td>{{ $item['nama'] }}</td>
                                     <td>{{ $item['falkutas']['nama'] }}</td>
+                                    <td>
+                                        <form action="{{ route('prodi.destroy', $item->id) }}" method="POST">
+                                            @method('delete')
+                                            @csrf
+                                            <button type="submit"
+                                            class="btn btn-danger btn-rounded show_confirm"
+                                            data-toggle="tooltip" title='Delete'
+                                            data-nama='{{ $item->nama }}'>Hapus</button>                                        </form>
+                                    </td>
                                 </tr>
                             </tbody>
                             @endforeach

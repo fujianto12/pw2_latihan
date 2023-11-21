@@ -48,7 +48,10 @@
                                             <form action="{{ route('mahasiswa.destroy', $item->id) }}" method="POST">
                                                 @method('delete')
                                                 @csrf
-                                                <button type="submit" class="btn btn-danger btn-sm">Hapus Data</button>
+                                                <button type="submit"
+                                                    class="btn btn-xs btn-danger btn-rounded show_confirm"
+                                                    data-toggle="tooltip" title='Delete'
+                                                    data-nama='{{ $item->nama }}'>Hapus</button>
                                             </form>
                                         </div>
                                     </td>

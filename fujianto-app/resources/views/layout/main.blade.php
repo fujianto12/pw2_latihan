@@ -8,7 +8,7 @@
     <title>@yield('title')</title>
     <!-- base:css -->
     <link rel="stylesheet" href="{{ asset('vendors/mdi/css/materialdesignicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/css/vendor.bundle.base.css')}} ">
+    <link rel="stylesheet" href="{{ asset('vendors/css/vendor.bundle.base.css') }} ">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -41,12 +41,12 @@
                         <i class="mdi mdi-home-modern menu-icon"></i>
                         <span class="menu-title">Program Studi</span>
                     </a>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('mahasiswa') }}">
-                            <i class="mdi mdi-account-circle menu-icon"></i>
-                            <span class="menu-title">Mahasiswa</span>
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('mahasiswa') }}">
+                        <i class="mdi mdi-account-circle menu-icon"></i>
+                        <span class="menu-title">Mahasiswa</span>
+                    </a>
+                </li>
                 </li>
                 <li class="nav-item sidebar-category">
                     <p>Components</p>
@@ -334,7 +334,7 @@
     <!-- container-scroller -->
 
     <!-- base:js -->
-    <script src="{{ asset('vendors/js/vendor.bundle.base.js')}}"></script>
+    <script src="{{ asset('vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
     <!-- Plugin js for this page-->
     <script src="{{ asset('vendors/chart.js/Chart.min.js') }}"></script>
@@ -352,6 +352,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     @yield('scripts')
 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        $('.show_confirm').click(function(event) {
+            var form = $(this).closest("form");
+            var nama = $(this).data("nama");
+            event.preventDefault();
+            swal({
+                    title: `Apakah Anda yakin ingin menghapus data ${nama} ini?`,
+                    text: "If you delete this, it will be gone forever.",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
+        });
+    </script>
+
+</body>
+
+</html>
 </body>
 
 </html>
